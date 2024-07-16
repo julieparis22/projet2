@@ -9,12 +9,13 @@ import Foundation
 
 import SwiftUI
 import Combine
-class Thermometer : ObservableObject {
-
+class Thermometer : ObservableObject, Identifiable {
+    var id = UUID()
     
     @Published var temperature: Double?
     @Published var pressure: Double?
-
+    @Published var humidity: Double?
+    @Published var windSpeed: Double?
     
     func getTemperature(city : City) {
 
@@ -37,6 +38,8 @@ class Thermometer : ObservableObject {
                 if let decodedResponse = try? JSONDecoder().decode(Temperature.self, from: data) {
                     DispatchQueue.main.async {
                         self.temperature = decodedResponse.main.temp
+                        self.pressure = decodedResponse.main.pressure
+                        self.humidity = decodedResponse.main.humidity
                 
       
                     }
@@ -45,7 +48,12 @@ class Thermometer : ObservableObject {
             }
             
           
+          
+            
+      
             print("ca a pas marche")
+            
+            
         }.resume()
     }
     

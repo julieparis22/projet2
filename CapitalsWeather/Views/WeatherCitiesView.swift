@@ -8,12 +8,36 @@
 import SwiftUI
 
 struct WeatherCitiesView: View {
+    @StateObject var windSpeedReader = WindSpeedReader()
+    @StateObject var thermometer = Thermometer()
     
-@State var capital = capitals[0]
+    @State var city = capitals[0]
+ 
+    @State  var selectedCityIndex: Int?
     var body: some View {
-        WeatherCitiesView(capital: capital)
+    
+        NavigationView {
+       //         List {                 }
+            ScrollView {
+                ForEach(capitals) { capital in
+                    NavigationLink(destination: WeatherCellModelView(city: capital)) {
+                        Spacer()
+                        CityCellView(city: capital)  .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding().foregroundStyle(.black)
+                    }
+
+     
+
+                }
+                
+            }
+                   
+                    
+        }.navigationTitle("Capitals")
+      
     }
 }
+
 
 #Preview {
     WeatherCitiesView()

@@ -8,11 +8,40 @@
 import SwiftUI
 
 struct WeatherCellModelView: View {
+    @StateObject var windSpeedReader = WindSpeedReader()
+    @StateObject var thermometer = Thermometer()
+    var city : City
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+       
+            city.color
+            VStack {
+                Spacer()
+                PresentationCityView(city: city)
+                Spacer()
+        
+         
+                    TemperatureModelView(thermometer: thermometer, city: city)
+                  
+              
+                Spacer()
+              
+                
+                
+        
+            }.foregroundStyle(.white)
+                .padding()
+            
+    
+            
+        }.onAppear {
+            windSpeedReader.getWindSpeed(city: city)
+            thermometer.getTemperature(city: city)
+            
+        }
     }
 }
 
 #Preview {
-    WeatherCellModelView()
+    WeatherCellModelView(city: capitals[0])
 }

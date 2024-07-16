@@ -10,6 +10,9 @@ import Foundation
 struct Temperature : Codable {
     struct Main: Codable {
         let temp: Double
+        
+        let  pressure : Double
+        let humidity : Double
   
     }
     let main: Main

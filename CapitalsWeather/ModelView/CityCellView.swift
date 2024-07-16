@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct CityCellView: View {
+    var city : City
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+
+        
+             
+                HStack {
+                    Text("\(city.name)").fontWeight(.bold)
+                
+                    ZStack {
+                        Circle().frame(width: UIScreen.main.bounds.width / 12).foregroundStyle(.gray)
+                        Text("\(city.flag)")
+                    }
+                    Text("\(city.country)")
+                }
+                .multilineTextAlignment(.trailing)
+                
+            
+           
+        
+        
+     
     }
 }
 
 #Preview {
-    CityCellView()
+    CityCellView(city: capitals[0])
 }
