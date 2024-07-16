@@ -22,17 +22,17 @@ struct TemperatureModelView: View {
                     }.frame(maxWidth: .infinity, alignment: .leading)
                   
                 } else {
-                    Text("Chargement...")
+                    Text("chargement...")
                 }
                 Text("").font(.title)
                 if let humidity = thermometer.humidity {
                     VStack {
-                        Text("humiditee").font(.callout)
-                        Text("\(String(format: "%.2f", humidity)) °C")
+                        Text("Humidite").font(.callout)
+                        Text("\(String(format: "%.2f", humidity)) %")
                     } .frame(maxWidth: .infinity, alignment: .leading)
                   
                 } else {
-                    Text("Chargement...")
+                    Text("chargement...")
                 }
             }
             Spacer()
@@ -41,11 +41,11 @@ struct TemperatureModelView: View {
                 if let pressure = thermometer.pressure {
                     VStack {
                         Text("Pression").font(.callout)
-                        Text("\(String(format: "%.2f", pressure)) °C")
+                        Text("\(String(format: "%.2f", pressure)) Pa")
                     }
                    .frame(maxWidth: .infinity, alignment: .leading)
                 } else {
-                    Text("Chargement...")
+                    Text("chargement...")
                 }
                 Text("").font(.title)
                 if let speed = windSpeedReader.windSpeed {

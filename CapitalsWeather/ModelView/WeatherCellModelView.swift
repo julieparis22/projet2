@@ -12,31 +12,27 @@ struct WeatherCellModelView: View {
     @StateObject var thermometer = Thermometer()
     var city : City
     var body: some View {
-        ZStack {
-       
-            city.color
+     
             VStack {
-                Spacer()
+      
                 PresentationCityView(city: city)
-                Spacer()
+              
         
-         
+                ImageCountryView(city: city)
+                
                     TemperatureModelView(thermometer: thermometer, city: city)
                   
               
                 Spacer()
+                Spacer()
               
-                
-                
-        
-            }.foregroundStyle(.white)
+            }
                 .padding()
             
-    
-            
-        }.onAppear {
+            .onAppear {
             windSpeedReader.getWindSpeed(city: city)
             thermometer.getTemperature(city: city)
+                
             
         }
     }

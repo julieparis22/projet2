@@ -11,7 +11,7 @@ import SwiftUI
 struct CapitalsWeatherApp: App {
     var body: some Scene {
         WindowGroup {
-            WeatherCitiesView()
+            SplashScreen()
         }
     }
 }

@@ -14,32 +14,33 @@ struct WindSpeedModelView: View {
    var city : City
     var body: some View {
       
-            VStack {
-         
-                if let speed = windSpeedReader.windSpeed {
-                    VStack (alignment: .leading)  {
-                        Text("Vitesse du vent")
-                        Text(" \(String(format: "%.2f", speed)) m/s")
-                    }
-                
-                } else {
-                    Text("chargement")
-                }
-                
-                
-          
-                
-                
-                
-            }.onAppear {
-            windSpeedReader.getWindSpeed(city: city)
-   
-
-            
-        }
+     Text(" ")
     }
 }
 
 #Preview {
     WindSpeedModelView(city: capitals[0])
 }
+/**       VStack {
+ 
+ if let speed = windSpeedReader.windSpeed {
+     VStack (alignment: .leading)  {
+         Text("Wind")
+         Text(" \(String(format: "%.2f", speed)) m/s")
+     }
+ 
+ } else {
+     Text("loading")
+ }
+ 
+ 
+
+ 
+ 
+ 
+}.onAppear {
+windSpeedReader.getWindSpeed(city: city)
+
+
+
+}*/

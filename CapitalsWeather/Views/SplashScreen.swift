@@ -16,15 +16,16 @@ struct SplashScreen: View {
                 Color.teal
                 VStack {
                     Spacer()
-                    Text("Weather for each capital").font(.system(size: heigthSize))
-                    Image(systemName: "globe.desk.fill")
+                    Text("Weather for each capital").font(.title).foregroundStyle(.white)
+                    
+                    Image(systemName: "globe.desk.fill").resizable().scaledToFit().foregroundStyle(.white)
                  
                     Spacer()
                    
                     Spacer()
-                    Button("Pass Intro") {
+                    Button("Passer Intro") {
                         showSplashcreen = false
-                    }.padding()
+                    }.padding().foregroundStyle(.white)
                     Spacer()
                 }
             }

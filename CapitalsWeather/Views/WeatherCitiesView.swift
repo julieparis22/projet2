@@ -10,31 +10,47 @@ import SwiftUI
 struct WeatherCitiesView: View {
     @StateObject var windSpeedReader = WindSpeedReader()
     @StateObject var thermometer = Thermometer()
+    @StateObject var filter = FilterCityTool(searchLetter: "")
     
-    @State var city = capitals[0]
- 
-    @State  var selectedCityIndex: Int?
+
+    @StateObject var imageLoader = ImageLoader()
+    @State var searchLetter = ""
+    @State var selectedCityIndex: Int?
+    
     var body: some View {
-    
         NavigationView {
-       //         List {                 }
-            ScrollView {
-                ForEach(capitals) { capital in
-                    NavigationLink(destination: WeatherCellModelView(city: capital)) {
-                        Spacer()
-                        CityCellView(city: capital)  .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding().foregroundStyle(.black)
-                    }
-
-     
-
-                }
+            VStack {
+                TextField("Villes commencant par...", text: $searchLetter)
+                    .padding()
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+          
+                Text(filter.messageError)
+                             .foregroundColor(.red)
+                             .padding(.horizontal)
                 
+                Button(action: {
+                    filter.messageError = ""
+                    filter.searchLetter = searchLetter
+                
+                }, label: {
+                    Text("Chercher selon la premiere lettre")
+                 
+                })
+                .padding(.horizontal)
+                
+                ScrollView {
+                    ForEach(filter.filterCities()) { capital in
+                        NavigationLink(destination: WeatherCellModelView(city: capital)) {
+                            CityCellView(city: capital)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding()
+                              
+                        }
+                    }
+                }
             }
-                   
-                    
-        }.navigationTitle("Capitals")
-      
+            .navigationTitle("Capitales")
+        }
     }
 }
 
@@ -42,3 +58,4 @@ struct WeatherCitiesView: View {
 #Preview {
     WeatherCitiesView()
 }
+
